@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] float speed;
-    bool isOn;
+    bool flag;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -14,7 +14,15 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Move workss");
-        rb.velocity = Vector3.zero;
-        rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+        if(!flag)
+        {
+            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+            flag = true;
+            Invoke("MovementWait",0.2f);
+        }
+    }
+    private void MovementWait()
+    {
+        flag = false;
     }
 }
