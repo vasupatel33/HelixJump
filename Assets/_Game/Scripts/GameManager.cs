@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             PositionDifferent = StartPosition - Input.mousePosition;
-            Player.transform.Rotate(new Vector3(0,PositionDifferent.x * 0.2f,0));
+            Player.transform.Rotate(new Vector3(0,PositionDifferent.x * 0.4f,0));
             StartPosition = Input.mousePosition;
         }
     }
