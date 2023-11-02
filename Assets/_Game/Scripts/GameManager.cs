@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             StartPosition = Input.mousePosition;
-            Debug.Log("Mouse pos = "+StartPosition);
         }
         if(Input.GetMouseButton(0))
         {

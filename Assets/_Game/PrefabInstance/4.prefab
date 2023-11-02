@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4294353560341339}
   - component: {fileID: 33553519531109952}
   - component: {fileID: 23553555799904572}
-  - component: {fileID: 64378746531201745}
+  - component: {fileID: 6912360249874233288}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Cheese
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64378746531201745
+--- !u!64 &6912360249874233288
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,9 +103,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 86b9546ef62e8154c847bd496353b605, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 2f5de371dfff6f649bd038e7d6e2b09e, type: 2}
 --- !u!1 &1214419032398814
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4975488736467103}
   - component: {fileID: 33676078602255527}
   - component: {fileID: 23788145131770034}
-  - component: {fileID: 64310052159131151}
+  - component: {fileID: 8444739999250751135}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Cheese
@@ -190,7 +190,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64310052159131151
+--- !u!64 &8444739999250751135
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,9 +209,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 86b9546ef62e8154c847bd496353b605, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 2f5de371dfff6f649bd038e7d6e2b09e, type: 2}
 --- !u!1 &1490553594576375
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4060951368691658}
   - component: {fileID: 33045785689201861}
   - component: {fileID: 23027995945336753}
-  - component: {fileID: 64845047968505334}
+  - component: {fileID: 1876105540894590534}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Cheese
@@ -296,7 +296,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64845047968505334
+--- !u!64 &1876105540894590534
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,9 +315,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 86b9546ef62e8154c847bd496353b605, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 2f5de371dfff6f649bd038e7d6e2b09e, type: 2}
 --- !u!1 &1518552263448674
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1327397615151435929}
   - {fileID: 4060951368691658}
   - {fileID: 4294353560341339}
   - {fileID: 4975488736467103}
@@ -365,7 +366,7 @@ GameObject:
   - component: {fileID: 4163362203796488}
   - component: {fileID: 33532143603542456}
   - component: {fileID: 23107972284617951}
-  - component: {fileID: 64937847252129346}
+  - component: {fileID: 3005538001173452844}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -438,7 +439,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64937847252129346
+--- !u!64 &3005538001173452844
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,9 +458,9 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 86b9546ef62e8154c847bd496353b605, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 2f5de371dfff6f649bd038e7d6e2b09e, type: 2}
 --- !u!1 &1976358540377419
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +472,7 @@ GameObject:
   - component: {fileID: 4044282115766464}
   - component: {fileID: 33354173873501978}
   - component: {fileID: 23594185703249055}
-  - component: {fileID: 64196289602209805}
+  - component: {fileID: 3537833082844282733}
   m_Layer: 0
   m_Name: Cheese
   m_TagString: Cheese
@@ -544,7 +545,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64196289602209805
+--- !u!64 &3537833082844282733
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -563,6 +564,113 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 86b9546ef62e8154c847bd496353b605, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 2f5de371dfff6f649bd038e7d6e2b09e, type: 2}
+--- !u!1 &1630433245669800893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327397615151435929}
+  - component: {fileID: 849779964481350647}
+  - component: {fileID: 6118209359271290211}
+  - component: {fileID: 8322123380876868244}
+  m_Layer: 0
+  m_Name: Pipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1327397615151435929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630433245669800893}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 4, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4351534138370195}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &849779964481350647
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630433245669800893}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6118209359271290211
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630433245669800893}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8322123380876868244
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630433245669800893}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

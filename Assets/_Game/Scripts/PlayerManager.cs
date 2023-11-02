@@ -24,6 +24,10 @@ public class PlayerManager : MonoBehaviour
             flag = true;
             Invoke("MovementWait",0.1f);
         }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy detect");
+        }
     }
     private void MovementWait()
     {
