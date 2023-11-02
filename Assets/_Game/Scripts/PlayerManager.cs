@@ -11,6 +11,10 @@ public class PlayerManager : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Move on triggerrr");
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Move workss");
