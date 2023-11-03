@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] GameObject CompletePanel;
     Rigidbody rb;
     [SerializeField] float speed;
     bool flag;
@@ -28,6 +29,10 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Enemy detect");
         }
+        if(collision.gameObject.tag == "Complete")
+        {
+            CompletePanel.SetActive(true);
+        }
     }
     private void MovementWait()
     {
@@ -35,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        float cameraOffsetY = 4.0f; // Adjust this value to set the desired vertical offset
+        float cameraOffsetY = 4.0f;
 
         if (transform.position.y < Camera.main.transform.position.y - cameraOffsetY)
         {
