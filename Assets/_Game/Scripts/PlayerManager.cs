@@ -1,42 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] GameObject CompletePanel;
-    Rigidbody rb;
-    [SerializeField] float speed;
-    bool flag;
-    private void Start()
+    [SerializeField] Ease easeType;
+
+    void Move()
     {
-        rb = GetComponent<Rigidbody>();
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Move on triggerrr");
+        transform.DOScaleX(0.8f, 0.1f);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Move workss");
-        if(!flag)
-        {
-            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
-            flag = true;
-            Invoke("MovementWait",0.1f);
-        }
-        if(collision.gameObject.tag == "Enemy")
+            transform.DOMoveY(3, 0.4f);
+            
+            transform.DOScaleX(0.7f, 0.3f).SetEase(easeType).OnComplete(Move);
+            
+            //Sequence mySequence = DOTween.Sequence();
+            //mySequence.Append(transform.DOScaleX(0.6f, 0.1f));
+            //mySequence.Append(transform.DOScaleY(0.6f, 0.1f));
+            //mySequence.PrependInterval(0.1f);
+            //mySequence.Append(transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.1f));
+
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Enemy detect");
         }
-        if(collision.gameObject.tag == "Complete")
+        if (collision.gameObject.CompareTag("Complete"))
         {
             CompletePanel.SetActive(true);
         }
-    }
-    private void MovementWait()
-    {
-        flag = false;
     }
     private void Update()
     {
