@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862172329
 RectTransform:
   m_ObjectHideFlags: 0
@@ -867,6 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443c4581d25b62449a54ac83c173855a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CompletePanel: {fileID: 862172328}
   speed: 16
 --- !u!54 &1472203284
 Rigidbody:
