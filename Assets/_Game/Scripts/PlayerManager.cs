@@ -10,12 +10,14 @@ public class PlayerManager : MonoBehaviour
 
     void Move()
     {
+        transform.DOScaleY(0.8f, 0.1f);
         transform.DOScaleX(0.8f, 0.1f);
     }
     private void OnCollisionEnter(Collision collision)
     {
             transform.DOMoveY(3, 0.4f);
             
+            transform.DOScaleY(0.75f, 0.3f).SetEase(easeType).OnComplete(Move);
             transform.DOScaleX(0.7f, 0.3f).SetEase(easeType).OnComplete(Move);
             
             //Sequence mySequence = DOTween.Sequence();
