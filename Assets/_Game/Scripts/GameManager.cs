@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     Vector3 StartPosition, PositionDifferent;
 
     [SerializeField] List<GameObject> AllRings;
+ 
 
     private void Start()
     {
@@ -29,9 +30,10 @@ public class GameManager : MonoBehaviour
                 g = Instantiate(AllRings[Random.Range(1, AllRings.Count-1)], Player.transform);
             }
             g.transform.Rotate(0, Random.Range(0, 360),0);
-            g.transform.Translate(0, -i * 4,0);
+            g.transform.Translate(0, -i * 4.5f,0);
         }
     }
+   
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
