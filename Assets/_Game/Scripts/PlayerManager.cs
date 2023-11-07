@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        YDifference = 0;
     }
     void Move()
     {
@@ -23,7 +21,9 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-            transform.DOMoveY(transform.position.y + 2.5f, 0.35f);
+        int RandomSplash = Random.Range(0, AllSplash.Count);
+        GameObject splashObj = Instantiate(AllSplash[RandomSplash], new Vector3(0.3f, transform.position.y-0.2f/*-0.14f - YDifference*/, -2), Quaternion.Euler(90, 0, 0), collision.transform);
+        transform.DOMoveY(transform.position.y + 2.5f, 0.35f);
             
             transform.DOScaleY(0.7f, 0.5f).SetEase(easeType).OnComplete(Move);
             transform.DOScaleX(0.7f, 0.2f).SetEase(easeType).OnComplete(Move);
@@ -34,8 +34,7 @@ public class PlayerManager : MonoBehaviour
         //mySequence.PrependInterval(0.1f);
         //mySequence.Append(transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.1f));
         Debug.Log("collision detect");
-        int RandomSplash = Random.Range(0, AllSplash.Count);
-        GameObject splashObj = Instantiate(AllSplash[RandomSplash],  new Vector3(0.3f,-0.14f - YDifference, -2), Quaternion.Euler(90,0,0), collision.transform);
+        
         Destroy(splashObj, 1.5f); 
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -47,20 +46,17 @@ public class PlayerManager : MonoBehaviour
             CompletePanel.SetActive(true);
         }
     }
-    float ExtraDiffCount;
-    [SerializeField] float Exploforce, power, radius;
+    [SerializeField] float Exploforce, radius;
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger detect");
-        YDifference += 4.42f + ExtraDiffCount;
-        ExtraDiffCount = 0.1f;
-        foreach(int child in other.gameObject.transform)
+        foreach(Transform child in other.transform)
         {
-            other.AddComponent<Rigidbody>();
-            other.gameObject.AddComponent<Rigidbody>();
-            //other.gameObject.AddComponent<Rigidbody>().AddExplosionForce(Exploforce, other.gameObject.GetComponentsInChildren<Transform>.pos,radius, power);
-
-        }
+            child.transform.gameObject.GetComponent<MeshCollider>().convex = true;
+            child.transform.gameObject.AddComponent<Rigidbody>();
+            child.transform.gameObject.GetComponent<Rigidbody>().AddExplosionForce(Exploforce, child.transform.position, radius,200);
+            Destroy(child.transform.gameObject, 1.5f);
+        }    
         other.gameObject.GetComponent<BoxCollider>().enabled = false;
     }
     private void Update()
