@@ -9,12 +9,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] List<GameObject> AllRings;
  
-
+    public int RingCount;
+    bool isRing;
+    public static GameManager Instance;
     private void Start()
     {
+        Instance = this;
         GameObject g;
+       
+        //PlayerPrefs.SetInt("RingCount",RingCount);
         int RingLength = PlayerPrefs.GetInt("RingCount",10);
-
+        Debug.Log("RingCount =" + RingLength);
         for(int i = 0; i < RingLength; i++)
         {
             if(i==0)

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -33,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         //mySequence.Append(transform.DOScaleY(0.6f, 0.1f));
         //mySequence.PrependInterval(0.1f);
         //mySequence.Append(transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.1f));
-        Debug.Log("collision detect");
+        //Debug.Log("collision detect");
         
         Destroy(splashObj, 1.5f); 
 
@@ -44,12 +46,26 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Complete"))
         {
             CompletePanel.SetActive(true);
+           
         }
+    }
+    public void OnClickNextLevelUnlock()
+    {
+        int RingLength = PlayerPrefs.GetInt("RingCount", 10);
+        
+        PlayerPrefs.SetInt("RingCount", RingLength + 1);
+        Debug.Log("After set Ring Count = " + RingLength);
+
+        SceneManager.LoadScene(1);
+    }
+    public void OnClickHomeBtn()
+    {
+        SceneManager.LoadScene(0);
     }
     [SerializeField] float Exploforce, radius;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger detect");
+        //Debug.Log("Trigger detect");
         foreach(Transform child in other.transform)
         {
             child.transform.gameObject.GetComponent<MeshCollider>().convex = true;
