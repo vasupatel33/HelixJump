@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
+    [SerializeField] GameObject Player, pausePanel;
     Vector3 StartPosition, PositionDifferent;
 
     [SerializeField] List<GameObject> AllRings;
@@ -38,7 +39,22 @@ public class GameManager : MonoBehaviour
             g.transform.Translate(0, -i * 4.5f,0);
         }
     }
-   
+    public void OnPauseButton()
+    { 
+        pausePanel.SetActive(true);
+    }
+    public void OnResumeButton()
+    {
+        pausePanel.SetActive(false);
+    }
+    public void OnRestartButton()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void OnHomeButton()
+    {
+        SceneManager.LoadScene(0);
+    }
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
