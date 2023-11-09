@@ -71,6 +71,7 @@ public class PlayerManager : MonoBehaviour
             child.transform.gameObject.GetComponent<MeshCollider>().convex = true;
             child.transform.gameObject.AddComponent<Rigidbody>();
             child.transform.gameObject.GetComponent<Rigidbody>().AddExplosionForce(Exploforce, child.transform.position, radius,200);
+            child.GetComponent<MeshCollider>().enabled = false;
             Destroy(child.transform.gameObject, 1.5f);
         }    
         other.gameObject.GetComponent<BoxCollider>().enabled = false;
