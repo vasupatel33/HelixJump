@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -15,6 +16,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] ParticleSystem particle;
     [SerializeField] TextMeshProUGUI levelText, scoreGame, scoreGameOver;
     [SerializeField] int LevelValue, scoreValue;
+    [SerializeField] Button MusicBtn, SoundBtn;
+    [SerializeField] Sprite MusicOnImg, SoundOnImg, MusicOffImg, SoundOffImg;
+    [SerializeField] float pitchIncreaseRate = 0.08f;
+    [SerializeField] AudioClip ClickSound, JumpSound, DestroySound, GameOverSound, CompleteSound, TriggerSound;
     private void Start()
     {
         LevelValue = PlayerPrefs.GetInt("LevelPref", 1);
@@ -28,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         particle.Play();
+        Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(JumpSound);
         int RandomSplash = Random.Range(0, AllSplash.Count);
         GameObject splashObj = Instantiate(AllSplash[RandomSplash], new Vector3(0.3f, transform.position.y-0.2f, -2), Quaternion.Euler(90, 0, 0), collision.transform);
         transform.DOMoveY(transform.position.y + 2.5f, 0.35f);
@@ -46,7 +52,9 @@ public class PlayerManager : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(GameOverSound);
             Debug.Log("Enemy detect");
+            Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
             SceneManager.LoadScene(1);
         }
         if (collision.gameObject.CompareTag("Complete"))
@@ -60,6 +68,7 @@ public class PlayerManager : MonoBehaviour
                 isScore = true;
                 Invoke("ScoreBool",1);
             }
+            Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(CompleteSound);
             int value = PlayerPrefs.GetInt("ScorePref", scoreValue);
             scoreGameOver.text = value.ToString();
             Debug.Log("Get val = "+value);
@@ -74,21 +83,29 @@ public class PlayerManager : MonoBehaviour
     }
     public void OnClickNextLevelUnlock()
     {
+        Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(ClickSound);
         Time.timeScale = 1;
         int RingLength = PlayerPrefs.GetInt("RingCount", 10);
         
         PlayerPrefs.SetInt("RingCount", RingLength + 2);
         Debug.Log("After set Ring Count = " + RingLength);
-
+        Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
         SceneManager.LoadScene(1);
     }
     public void OnClickHomeBtn()
     {
+        Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(ClickSound);
         SceneManager.LoadScene(0);
     }
     [SerializeField] float Exploforce, radius;
     private void OnTriggerEnter(Collider other)
     {
+        
+        Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch += pitchIncreaseRate;
+
+        Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().clip = TriggerSound;
+        Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().Play();
+
         scoreValue += 25;
         PlayerPrefs.SetInt("ScorePref",scoreValue);
         scoreGame.text = scoreValue.ToString();
@@ -102,6 +119,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(child.transform.gameObject, 1.5f);
         }    
         other.gameObject.GetComponent<BoxCollider>().enabled = false;
+        Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(DestroySound);
     }
     private void Update()
     {

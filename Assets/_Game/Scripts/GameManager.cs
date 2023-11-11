@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -9,7 +10,9 @@ public class GameManager : MonoBehaviour
     Vector3 StartPosition, PositionDifferent;
 
     [SerializeField] List<GameObject> AllRings;
- 
+    
+    
+
     public int RingCount;
     bool isRing;
     public static GameManager Instance;
@@ -68,4 +71,6 @@ public class GameManager : MonoBehaviour
             StartPosition = Input.mousePosition;
         }
     }
+
+
 }
