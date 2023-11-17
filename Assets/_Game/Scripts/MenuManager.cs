@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class MenuManager : MonoBehaviour
 {
@@ -19,13 +20,19 @@ public class MenuManager : MonoBehaviour
     {
         Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(ClickSound);
         SettingPanel.SetActive(true);
+
+        Sequence mySequence = DOTween.Sequence();
+
+        SettingPanel.transform.DOScale(new Vector3(1, 1, 1), 1).SetEase(Ease.InOutQuint);   
     }
     public void OnSettingPanelClose()
     {
         Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(ClickSound);
+        SettingPanel.transform.DOScale(new Vector3(0,0,0),1f).SetEase(Ease.OutCirc);
+        SettingPanel.transform.DOShakeRotation(2, 30);
         StartCoroutine(SettingPanelWait());
     }
-    IEnumerator SettingPanelWait()
+    IEnumerator SettingPanelWait()  
     {
         yield return new WaitForSeconds(1);
         SettingPanel.SetActive(false);

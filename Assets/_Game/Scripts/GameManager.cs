@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -10,9 +9,8 @@ public class GameManager : MonoBehaviour
     Vector3 StartPosition, PositionDifferent;
 
     [SerializeField] List<GameObject> AllRings;
+    [SerializeField] TextMeshProUGUI LevelTitle;
     
-    
-
     public int RingCount;
     bool isRing;
     public static GameManager Instance;
@@ -20,8 +18,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         GameObject g;
-       
-        //PlayerPrefs.SetInt("RingCount",RingCount);
+        
         int RingLength = PlayerPrefs.GetInt("RingCount",10);
         Debug.Log("RingCount =" + RingLength);
         for(int i = 0; i < RingLength; i++)
@@ -45,18 +42,22 @@ public class GameManager : MonoBehaviour
     public void OnPauseButton()
     { 
         pausePanel.SetActive(true);
+        Time.timeScale = 0;
     }
     public void OnResumeButton()
     {
         pausePanel.SetActive(false);
+        Time.timeScale = 1;
     }
     public void OnRestartButton()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
     public void OnHomeButton()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
     void Update()
     {
@@ -71,6 +72,4 @@ public class GameManager : MonoBehaviour
             StartPosition = Input.mousePosition;
         }
     }
-
-
 }

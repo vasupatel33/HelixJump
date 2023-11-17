@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] GameObject CompletePanel;
+    [SerializeField] GameObject CompletePanel, GameOverPanel;
     [SerializeField] Ease easeType;
 
     float YDifference;
     [SerializeField] List<GameObject> AllSplash;
+    [SerializeField] List<GameObject> AllStars;
     [SerializeField] ParticleSystem particle;
     [SerializeField] TextMeshProUGUI levelText, scoreGame, scoreGameOver;
     [SerializeField] int LevelValue, scoreValue;
-    [SerializeField] Button MusicBtn, SoundBtn;
-    [SerializeField] Sprite MusicOnImg, SoundOnImg, MusicOffImg, SoundOffImg;
     [SerializeField] float pitchIncreaseRate = 0.08f;
     [SerializeField] AudioClip ClickSound, JumpSound, DestroySound, GameOverSound, CompleteSound, TriggerSound;
     private void Start()
@@ -46,16 +44,16 @@ public class PlayerManager : MonoBehaviour
         //mySequence.Append(transform.DOScaleY(0.6f, 0.1f));
         //mySequence.PrependInterval(0.1f);
         //mySequence.Append(transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.1f));
-        //Debug.Log("collision detect");
         
         Destroy(splashObj, 1.5f); 
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(GameOverSound);
-            Debug.Log("Enemy detect");
             Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
+            GameOverPanel.SetActive(true);
+            Time.timeScale = 0;
         }
         if (collision.gameObject.CompareTag("Complete"))
         {
@@ -73,8 +71,16 @@ public class PlayerManager : MonoBehaviour
             scoreGameOver.text = value.ToString();
             Debug.Log("Get val = "+value);
             CompletePanel.SetActive(true);
-            Time.timeScale = 0;
+            foreach(var item in AllStars)
+            {
+                item.transform.DOScale(1,1).SetDelay(0.25f);
+            }
+            this.gameObject.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
         }
+    }
+    public void OnGameOverPanelClose()
+    {
+        GameOverPanel.transform.DOScale(0,1).SetEase(Ease.InCubic);
     }
     bool isScore;
     private void ScoreBool()
@@ -84,9 +90,7 @@ public class PlayerManager : MonoBehaviour
     public void OnClickNextLevelUnlock()
     {
         Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(ClickSound);
-        Time.timeScale = 1;
-        int RingLength = PlayerPrefs.GetInt("RingCount", 10);
-        
+        int RingLength = PlayerPrefs.GetInt("RingCount", 10);        
         PlayerPrefs.SetInt("RingCount", RingLength + 2);
         Debug.Log("After set Ring Count = " + RingLength);
         Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
