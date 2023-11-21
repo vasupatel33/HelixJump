@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         transform.DOMoveY(transform.position.y + 2.5f, 0.35f);
             
         transform.DOScaleY(0.7f, 0.5f).SetEase(easeType).OnComplete(Move);
-        transform.DOScaleX(0.7f, 0.2f).SetEase(easeType).OnComplete(Move);
+        transform.DOScaleX(0.65f, 0.2f).SetEase(easeType).OnComplete(Move);
 
         //Sequence mySequence = DOTween.Sequence();
         //mySequence.Append(transform.DOScaleX(0.6f, 0.1f));
