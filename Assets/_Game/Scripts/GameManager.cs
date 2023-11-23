@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -41,6 +43,12 @@ public class GameManager : MonoBehaviour
     public void OnPauseButton()
     { 
         pausePanel.SetActive(true);
+        pausePanel.transform.DOScale(new Vector3(1, 1, 1), 1);
+        StartCoroutine(WaitUntillTimeZero());
+    }
+    IEnumerator WaitUntillTimeZero()
+    {
+        yield return new WaitForSeconds(1.2f);
         Time.timeScale = 0;
     }
     public void OnResumeButton()

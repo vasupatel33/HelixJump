@@ -1,9 +1,10 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         LevelValue = PlayerPrefs.GetInt("LevelPref", 1);
+        GameLevelText.text = LevelValue.ToString();
         Debug.Log("Current val = "+LevelValue);
     }
     void Move()
@@ -52,8 +54,9 @@ public class PlayerManager : MonoBehaviour
             Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(GameOverSound);
             Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
             //SceneManager.LoadScene(1);
-            GameOverPanel.SetActive(true);
-            Time.timeScale = 0;
+            //GameOverPanel.SetActive(true);
+            GameOverPanel.transform.DOScale(new Vector3(1, 1, 1), 1).SetEase(Ease.OutSine);
+            StartCoroutine(WaitUntillTimeZero());
         }
         if (collision.gameObject.CompareTag("Complete"))
         {
@@ -62,8 +65,6 @@ public class PlayerManager : MonoBehaviour
                 levelText.text = LevelValue.ToString();
                 LevelValue++;
                 PlayerPrefs.SetInt("LevelPref", LevelValue);
-                GameLevelText.text = LevelValue.ToString();
-                Debug.Log("After val = " + LevelValue);
                 isScore = true;
                 Invoke("ScoreBool",1);
             }
@@ -71,12 +72,22 @@ public class PlayerManager : MonoBehaviour
             int value = PlayerPrefs.GetInt("ScorePref", scoreValue);
             scoreGameOver.text = value.ToString();
             CompletePanel.SetActive(true);
-            foreach(var item in AllStars)
-            {
-                item.transform.DOScale(1,1).SetDelay(0.25f);
-            }
+
+            Sequence mySeq = DOTween.Sequence();
+            //mySeq.Append(AllStars[0].transform.DOScale(new Vector3(2.7f, 2.7f, 0), 0.5f).SetEase(Ease.OutElastic));
+            //mySeq.Append(AllStars[1].transform.DOScale(new Vector3(2.7f, 2.7f, 0), 0.5f).SetEase(Ease.OutElastic));
+            //mySeq.Append(AllStars[2].transform.DOScale(new Vector3(2.7f, 2.7f, 0), 0.5f).SetEase(Ease.OutElastic));
+            AllStars[0].transform.DOScale(new Vector3(2.7f, 2.7f, 0), 1f).SetEase(Ease.OutBounce).SetDelay(0.2f);
+            AllStars[1].transform.DOScale(new Vector3(2.7f, 2.7f, 0), 1f).SetEase(Ease.OutBounce).SetDelay(0.6f);
+            AllStars[2].transform.DOScale(new Vector3(2.7f, 2.7f, 0), 1f).SetEase(Ease.OutBounce).SetDelay(1f);
+            StartCoroutine(WaitUntillTimeZero());
             this.gameObject.transform.gameObject.GetComponent<SphereCollider>().enabled = false;
         }
+    }
+    IEnumerator WaitUntillTimeZero()
+    {
+        yield return new WaitForSeconds(1.8f);
+        Time.timeScale = 0;
     }
     public void OnGameOverPanelClose()
     {
@@ -89,12 +100,15 @@ public class PlayerManager : MonoBehaviour
     }
     public void OnClickNextLevelUnlock()
     {
+        Time.timeScale = 1;
         Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(ClickSound);
         int RingLength = PlayerPrefs.GetInt("RingCount", 10);        
         PlayerPrefs.SetInt("RingCount", RingLength + 2);
         Debug.Log("After set Ring Count = " + RingLength);
         Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
         SceneManager.LoadScene(1);
+        GameLevelText.text = LevelValue.ToString();
+        Debug.Log("After val = " + LevelValue);
     }
     public void OnClickHomeBtn()
     {
