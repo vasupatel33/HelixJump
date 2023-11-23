@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     Vector3 StartPosition, PositionDifferent;
 
     [SerializeField] List<GameObject> AllRings;
-    [SerializeField] TextMeshProUGUI LevelTitle;
     
     public int RingCount;
     bool isRing;

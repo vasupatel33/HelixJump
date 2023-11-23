@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] List<GameObject> AllSplash;
     [SerializeField] List<GameObject> AllStars;
     [SerializeField] ParticleSystem particle;
-    [SerializeField] TextMeshProUGUI levelText, scoreGame, scoreGameOver;
+    [SerializeField] TextMeshProUGUI levelText, scoreGame, scoreGameOver,  GameLevelText;
     [SerializeField] int LevelValue, scoreValue;
     [SerializeField] float pitchIncreaseRate = 0.08f;
     [SerializeField] AudioClip ClickSound, JumpSound, DestroySound, GameOverSound, CompleteSound, TriggerSound;
@@ -62,6 +62,7 @@ public class PlayerManager : MonoBehaviour
                 levelText.text = LevelValue.ToString();
                 LevelValue++;
                 PlayerPrefs.SetInt("LevelPref", LevelValue);
+                GameLevelText.text = LevelValue.ToString();
                 Debug.Log("After val = " + LevelValue);
                 isScore = true;
                 Invoke("ScoreBool",1);
@@ -69,7 +70,6 @@ public class PlayerManager : MonoBehaviour
             Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(CompleteSound);
             int value = PlayerPrefs.GetInt("ScorePref", scoreValue);
             scoreGameOver.text = value.ToString();
-            Debug.Log("Get val = "+value);
             CompletePanel.SetActive(true);
             foreach(var item in AllStars)
             {

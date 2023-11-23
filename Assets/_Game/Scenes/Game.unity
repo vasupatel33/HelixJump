@@ -6098,6 +6098,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 597146811}
+  - component: {fileID: 597146813}
+  - component: {fileID: 597146812}
   m_Layer: 5
   m_Name: GameTitle
   m_TagString: Untagged
@@ -6126,6 +6128,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -83}
   m_SizeDelta: {x: 340, y: 115}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &597146812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597146810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6ef4f7b7567571a47a5f17f7e2c5423d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &597146813
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597146810}
+  m_CullTransparentMesh: 1
 --- !u!1 &632776014
 GameObject:
   m_ObjectHideFlags: 0
@@ -6168,7 +6208,6 @@ MonoBehaviour:
   - {fileID: 1518552263448674, guid: e93a50187e59ec54cb4baa7677c95b49, type: 3}
   - {fileID: 1518552263448674, guid: 5f0717d2b09b62e4eac0c5f29acaefa1, type: 3}
   - {fileID: 1037612744937071, guid: e583181abfbccb34f97619832d410805, type: 3}
-  LevelTitle: {fileID: 0}
   RingCount: 0
 --- !u!4 &632776016
 Transform:
@@ -16901,8 +16940,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279299071
+  m_fontColor: {r: 1, g: 0.92278683, b: 0.06132078, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17583,6 +17622,7 @@ MonoBehaviour:
   levelText: {fileID: 2082491128}
   scoreGame: {fileID: 1011314558}
   scoreGameOver: {fileID: 98607050}
+  GameLevelText: {fileID: 1274265063}
   LevelValue: 0
   scoreValue: 0
   pitchIncreaseRate: 0.1
@@ -17768,7 +17808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 266.5175, y: 112}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1482063781
@@ -17800,8 +17840,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279299071
+  m_fontColor: {r: 1, g: 0.92278683, b: 0.06132078, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
