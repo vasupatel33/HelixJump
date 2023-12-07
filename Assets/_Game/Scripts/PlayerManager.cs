@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         int RandomSplash = Random.Range(0, AllSplash.Count);
         GameObject splashObj = Instantiate(AllSplash[RandomSplash], new Vector3(0.3f, transform.position.y-0.2f, -2), Quaternion.Euler(90, 0, 0), collision.transform);
         transform.DOMoveY(transform.position.y + 2.5f, 0.35f);
-            
+        
         transform.DOScaleY(0.7f, 0.5f).SetEase(easeType).OnComplete(Move);
         transform.DOScaleX(0.65f, 0.2f).SetEase(easeType).OnComplete(Move);
 
@@ -52,9 +52,6 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Common.Instance.gameObject.transform.GetChild(1).GetComponent<AudioSource>().PlayOneShot(GameOverSound);
-            Common.Instance.gameObject.transform.GetChild(2).GetComponent<AudioSource>().pitch = 1;
-            //SceneManager.LoadScene(1);
-            //GameOverPanel.SetActive(true);
             GameOverPanel.transform.DOScale(new Vector3(1, 1, 1), 1).SetEase(Ease.OutSine);
             StartCoroutine(WaitUntillTimeZero());
         }
